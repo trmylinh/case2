@@ -46,6 +46,15 @@ export default class CartManagement{
             }
         })
     }
+    changeQuantity() : void{
+        let id_p : number = readlineSync.question("Enter id-product you want to change quantity:");
+        let newQuantity : number = readlineSync.question("Change quantity you want:");
+        this.cartList.forEach((e)=>{
+            if(e.getProduct().getId() == id_p){
+                e.setQuantity(newQuantity);
+            }
+        })
+    }
     checkProductInCart(id: number) : boolean{
         for(let i = 0; i < this.cartList.length; i++){
             if(id == this.cartList[i].getProduct().getId()){
@@ -114,9 +123,10 @@ export default class CartManagement{
             for (let i = 0; i < this.cartList.length; i++) {
                 if (id_p == this.cartList[i].getProduct().getId()) {
                     this.cartList.splice(i, 1);
+                    console.log("-----------Delete Success!-------------");
                 }
             }
-            console.log("-----------Delete Success!-------------");
+
         }
         else{
             console.log("Your cart is empty. So you can't remove anything.");

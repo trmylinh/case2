@@ -22,9 +22,10 @@ export default class MenuUser {
         3. Search product-name
         4. Shopping
         5. Show cart
-        6. Remove product from cart
-        7. Pay your cart
-        8. Exit
+        6. Change quantity product in your cart
+        7. Remove product from cart
+        8. Pay your cart
+        9. Exit
         ---------------------------------------
         `);
 
@@ -32,14 +33,14 @@ export default class MenuUser {
         let regex: RegExp = /^[1-9]$/;
         // let readlineSync = require('readline-sync');
 
-        while (choice < 1 || choice > 8) {
+        while (choice < 1 || choice > 9) {
             let choose = readlineSync.question("Choose your option:");
             if (regex.test(choose)) {
                 choice = +(choose);
                 // console.log("Right");
             } else {
                 choice = -1;
-                console.log("Please choose between 1 and 8!!!");
+                console.log("Please choose between 1 and 9!!");
             }
         }
 
@@ -65,14 +66,18 @@ export default class MenuUser {
                 this.init();
                 break;
             case 6:
-                this.cartManagement.deleteProductOfCart();
+                this.cartManagement.changeQuantity();
                 this.init();
                 break;
             case 7:
-                this.cartManagement.pay();
+                this.cartManagement.deleteProductOfCart();
                 this.init();
                 break;
             case 8:
+                this.cartManagement.pay();
+                this.init();
+                break;
+            case 9:
                 console.log("-----------Exit Menu User Success------------");
                 this.menuAccount = new MenuAccount();
                 return;
