@@ -7,7 +7,7 @@ export default class Cart {
     private _quantity: number;
     private _product: Product;
     private _totalPrice: number;
-    private _account: Account;
+    // private _account: Account;
 
     constructor(quantity: number, product: Product, totalPrice: number) {
         // super();
@@ -59,16 +59,16 @@ export default class Cart {
         this._totalPrice = value;
     }
 
-    getAccount(): Account {
-        return this._account;
-    }
-
-    setAccount(value: Account) {
-        this._account = value;
-    }
+    // getAccount(): Account {
+    //     return this._account;
+    // }
+    //
+    // setAccount(value: Account) {
+    //     this._account = value;
+    // }
 
     public toString() : string{
-        return `Id-cart:${this._id}, Quantity:${this._quantity},${this._account},${this._product},${this._totalPrice}`;
+        return `Id-cart:${this._id}, Quantity:${this._quantity},Product: ${this._product}, Total: ${this._totalPrice}`;
     }
 
 }

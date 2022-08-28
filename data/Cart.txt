@@ -1,0 +1,1 @@
+Id-cart:1, Quantity:NaN,Product: 0,undefined,undefined,undefined,NaN,NaN, Total: NaN

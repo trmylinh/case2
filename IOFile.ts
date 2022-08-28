@@ -1,16 +1,18 @@
 import * as fs from 'fs';
-import User from "./model/User";
 import Account from "./model/Account";
 import Product from "./model/Product";
+import Cart from "./model/Cart";
 
 export default class IOFile {
     public readFile(path: string) {
         let data = fs.readFileSync(path);
+        if(!data){
 
+        }
         return data.toString().split('\r\n');
     }
 
-    public writeFile(path: string, data: Array<Account> | Array<Product>) {
+    public writeFile(path: string, data: Array<Account> | Array<Product> | Array<Cart>) {
         let str = "";
         // console.log(data);
 

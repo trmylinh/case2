@@ -2,12 +2,16 @@ import Cart from "../model/Cart";
 import Product from "../model/Product";
 const readlineSync = require("readline-sync");
 import ProductManagement from "./ProductManagement";
+import IOFile from "../IOFile";
+import Brand from "../model/Brand";
 
 export default class CartManagement{
     public cartList : Array<Cart> = new Array<Cart>();
     private productManagament : ProductManagement = new ProductManagement() ;
+    private fileAccount = new IOFile();
+    private PATH = "./data/Cart.txt";
     constructor() {
-
+        // this.getData();
     }
 
     createCart() : Cart{
@@ -30,15 +34,9 @@ export default class CartManagement{
                }
            }
        }
-       // let size : String = readlineSync.question("Enter size you want to buy:");
        this.updateAmountInCart(id,newAmount);
-        // this.cartList.forEach((e)=>{
-        //     if(e.getProduct().getId() == id){
-        //         e.setCount(newAmount);
-        //     }
-        // })
+
         let totalPrice : number = newAmount * product.getPrice();
-       // console.log(totalPrice);
         return new Cart(newAmount,product, totalPrice);
     }
     updateAmountInCart(id:number,newAmount:number) :void{
@@ -57,7 +55,6 @@ export default class CartManagement{
         return false;
     }
     getProductByID(id:number) : Product{
-        // this.productMangament = new ProductManagement();
         for(let i = 0; i < this.productManagament.productList.length;i++){
             if(id == this.productManagament.productList[i].getId()){
                 return this.productManagament.productList[i];
@@ -70,6 +67,7 @@ export default class CartManagement{
         let cart : Cart = this.createCart();
         this.cartList.push(cart);
         // console.log(this.cartList);
+        // this.fileAccount.writeFile(this.PATH,this.cartList);
     }
 
     public displayCart() : void{
@@ -81,10 +79,17 @@ export default class CartManagement{
         this.cartList.forEach((e)=>{
             sum += e.getTotalPrice();
         })
-        console.log(`-----------------
+        if(this.cartList.length == 0){
+            console.log(`-----------------
+        No product in cart. Please pick product which you like ^^
+        ------------------------------`);
+        }
+        else {
+            console.log(`-----------------
         Payment success
         Total: ${sum} VND
         ------------------------------`);
+        }
        this.updateAmountProduct();
         delete  this.cartList;
     }
@@ -104,12 +109,37 @@ export default class CartManagement{
     }
 
     public deleteProductOfCart() : void{
-        let id_p : number = readlineSync.question("Enter id of product you need to delete: ");
-        for(let i = 0; i < this.cartList.length;i++){
-            if(id_p == this.cartList[i].getProduct().getId()){
-                this.cartList.splice(i,id_p);
+        if(this.cartList.length != 0) {
+            let id_p : number = readlineSync.question("Enter id of product you need to delete:");
+            for (let i = 0; i < this.cartList.length; i++) {
+                if (id_p == this.cartList[i].getProduct().getId()) {
+                    this.cartList.splice(i, 1);
+                }
             }
+            console.log("-----------Delete Success!-------------");
         }
+        else{
+            console.log("Your cart is empty. So you can't remove anything.");
+        }
+
+        // this.fileAccount.writeFile(this.PATH,this.cartList);
+    }
+
+    private getData() {
+        let  data = this.fileAccount.readFile(this.PATH);
+        data.forEach(e=>{
+            let id = +e.split(',')[0];
+            let quantity = +(e.split(',')[1]);
+            let totalPrice = +e.split(',')[2];
+            let name = (e.split(',')[3]);
+            let namebrand = e.split(',')[4];
+            let size = e.split(',')[5];
+            let price = +e.split(',')[6];
+            let amount = +e.split(',')[7];
+            let brand = new Brand(namebrand);
+            let product = new Product(id,name,brand,size,price,amount);
+            this.cartList.push(new Cart(quantity,product,totalPrice));
+        })
     }
 }
 // let cart = new CartManagement();

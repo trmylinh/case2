@@ -54,5 +54,5 @@ export default class MenuAccount {
     }
 }
 
-let menu = new MenuAccount();
+// let menu = new MenuAccount();
 // menuAccount.init();
