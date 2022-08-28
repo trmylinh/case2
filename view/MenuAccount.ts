@@ -1,18 +1,19 @@
-// import AccountManagement from "../controller/AccountManagement";
+import AccountManagement from "../controller/AccountManagement";
+import MenuUser from "./MenuUser";
+
 // import * as readlineSync from 'readline-sync';
 const readlineSync = require("readline-sync");
-const accountManagement = require("../controller/AccountManagement");
-class MenuAccount {
-    // private accountManagement : AccountManagement = new AccountManagement();
+// const accountManagement = require("../controller/AccountManagement");
+export default class MenuAccount {
+    private accountManagament : AccountManagement = new AccountManagement();
+    private menuUser : MenuUser;
 
     constructor() {
-        console.log(accountManagement);
-        // this.accountManagement.signIn();
         this.init();
-        // console.log(AccountManagement);
+
     }
 
-     init() {
+     private init() {
         console.log(`
         --------------- Menu ------------------
         1. Sign up
@@ -26,7 +27,6 @@ class MenuAccount {
         // let readlineSync = require('readline-sync');
 
         while (choice < 1 || choice > 3) {
-
             let choose = readlineSync.question("Choose your option:");
             if (regex.test(choose)) {
                 choice = +(choose);
@@ -39,20 +39,20 @@ class MenuAccount {
 
         switch (choice) {
             case 1:
-                accountManagement.displayAccount();
+                this.accountManagament.addAccount();
+                this.init();
                 break;
             case 2:
-                // this.acountManagement.displayAccount();
-                // this.accountManagement.signIn();
-                // console.log("Sign in");
-                // console.log(this.accountManagement)
+                this.accountManagament.signIn();
+                // this.menuUser = new MenuUser();
                 break;
             case 3:
+                console.log("GoodBye and See you soon!");
                 return;
         }
 
     }
 }
 
-let menuAccount = new MenuAccount();
+let menu = new MenuAccount();
 // menuAccount.init();

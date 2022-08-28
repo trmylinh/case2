@@ -1,35 +1,48 @@
+import User from "./User";
 export default  class Account{
     private name : string;
     private password : string;
+    private user : User;
 
-
-    constructor(name: string, password: string) {
+    constructor(name: string, password: string, user : User) {
         this.name = name;
         this.password = password;
+        this.user = user;
     }
 
-    getname(): string {
+    getName(): string {
         return this.name;
     }
 
-    setname(value: string) {
+    setName(value: string) {
         this.name = value;
     }
 
-    getpassword(): string {
+    getPassword(): string {
         return this.password;
     }
 
-    setpassword(value: string) {
+    setPassword(value: string) {
         this.password = value;
     }
 
-    public toString = () : string => {
-        return `${this.name},${this.password}`;
+
+    getUser(): User {
+        return this.user;
+    }
+
+    setUser(value: User) {
+        this.user = value;
+    }
+
+    public toString() : string {
+        return `${this.name},${this.password},${this.user}`;
 
     }
 
 
 }
+
 // let account = new Account("Ngoc","123");
 // console.log(account.toString())
+// account.didplay();

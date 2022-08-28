@@ -1,4 +1,3 @@
-linh,123
-ngoc,123
-sy,123
-son,123
+linh,123,tran my linh,20,hanoi
+duc,123,minh duc,20,quangninh
+son,123,truong son,20,quang ninh

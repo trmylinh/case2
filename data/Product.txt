@@ -1,0 +1,10 @@
+1,babydoll skirt,May,S-L,150000,10
+2,skirt A-type,cat,S-L,100000,17
+3,polo shirt,polo,M-XL,300000,10
+4,unisex shirt,polo,M-2XL,130000,27
+5,jeans,JEANS,L-4XL,200000,17
+6,baggy,JEANS,freesize,160000,30
+7,Princess skirt,May,S-M,300000,96
+8,office dress,cat,S-M,1000000,200
+9,Men's shorts,MEN,L-3Xl,250000,50
+10,minh ngov,ngoc,freesizw,10000,1
